@@ -1,0 +1,63 @@
+{
+  "name": "@nydiokar/autodoc",
+  "version": "0.1.1",
+  "description": "A CLI tool to automatically generate documentation for TypeScript projects.",
+  "type": "module",
+  "bin": {
+    "autodoc": "dist/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/cli.js",
+    "autodoc": "node dist/index.js"
+  },
+  "keywords": [
+    "documentation",
+    "generator",
+    "typescript",
+    "cli"
+  ],
+  "author": "nyd",
+  "contributors": [
+    {
+      "name": "bozp-pzob",
+      "url": "https://github.com/bozp-pzob"
+    }
+  ],
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@langchain/openai": "^0.3.16",
+    "@octokit/rest": "^21.0.2",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/parser": "8.26.0",
+    "@typescript-eslint/types": "8.26.0",
+    "@typescript-eslint/typescript-estree": "8.26.0",
+    "dotenv": "^16.4.7",
+    "langchain": "^0.3.7",
+    "yaml": "^2.3.4",
+    "ts-node": "10.9.2",
+    "tslib": "2.8.1",
+    "tsup": "^8.4.0",
+    "typescript": "5.8.2",
+    "@hapi/shot": "^6.0.1",
+    "@types/hapi": "^18.0.14"
+  },
+  "devDependencies": {
+    "tsup": "8.4.0",
+    "prettier": "3.5.3",
+    "ts-node": "10.9.2",
+    "tslib": "2.8.1",
+    "typescript": "5.8.2",
+    "@hapi/shot": "^6.0.1",
+    "@types/hapi": "^18.0.14"
+  }
+}
