@@ -4,8 +4,8 @@ import type { Configuration } from './Configuration.js';
 
 
 /**
- * Class for traversing directories and processing files.
- * * @class DirectoryTraversal
+ * Class for traversing directories and processing files based on a configuration object.
+ * @class
  */
 export class DirectoryTraversal {
 
@@ -34,10 +34,9 @@ export class DirectoryTraversal {
    * @param {string[]} [prFiles=[]] - PR files to process
    */
 /**
- * Constructor for the class.
- * 
+ * Constructor for a class.
  * @param {Configuration} config - The configuration object.
- * @param {string[]} prFiles - An array of strings representing the PR files. Default value is an empty array.
+ * @param {string[]} [prFiles=[]] - Array of PR files.
  */
   constructor(
     private config: Configuration,
