@@ -1,10 +1,10 @@
 {
   "name": "@nydiokar/autodoc",
-  "version": "0.1.1",
-  "description": "A CLI tool to automatically generate documentation for TypeScript projects.",
+  "version": "0.1.6",
+  "description": "A tool to automatically generate documentation for TypeScript projects.",
   "type": "module",
   "bin": {
-    "autodoc": "dist/cli.js"
+    "autodoc": "dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -14,8 +14,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "start": "node dist/cli.js",
-    "autodoc": "node dist/index.js"
+    "autodoc": "node dist/index.js",
+    "test:local": "powershell -ExecutionPolicy Bypass -File ./test-local.ps1"
   },
   "keywords": [
     "documentation",
@@ -58,6 +58,7 @@
     "tslib": "2.8.1",
     "typescript": "5.8.2",
     "@hapi/shot": "^6.0.1",
-    "@types/hapi": "^18.0.14"
+    "@types/hapi": "^18.0.14",
+    "dotenv-cli": "^7.4.2"
   }
 }

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { AIService } from './AIService/AIService.js';
 import { Configuration } from './Configuration.js';
 import { DirectoryTraversal } from './DirectoryTraversal.js';
@@ -69,7 +70,7 @@ async function main() {
         jsDocGenerator,
         gitManager,
         configuration,
-        aiService
+        aiService,
       );
 
       const pluginDocGenerator = new PluginDocumentationGenerator(

@@ -6,13 +6,13 @@ import { fileURLToPath } from 'node:url';
 import * as yaml from 'yaml';
 import type { Repository } from './types/index.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-/**
- * Gets the repository root path by going up two levels from the current file
- * This assumes the code is in src/ directory of the package
- */
-const getRepoRoot = () => path.resolve(__dirname, '../../../');
+const getRepoRoot = () => {
+  if (process.env.GITHUB_WORKSPACE) {
+    return process.env.GITHUB_WORKSPACE;
+  }
+  // Fallback for local testing
+  return process.cwd();
+};
 
 interface ConfigurationData {
   rootDirectory: {
@@ -41,13 +41,13 @@ export class Configuration implements Omit<ConfigurationData, 'rootDirectory'> {
   private _branch = 'develop';
   private _generateJsDoc = true;
   private _generateReadme = false;
-  public useGit = false;
-  public dryRun = false;
+
+  public useGit = true;
 
   public excludedDirectories: string[] = [];
   public repository: Repository = {
-    owner: 'nydiokar',
-    name: 'sova',
+    owner: '',
+    name: '',
     pullNumber: undefined,
   };
   public commitMessage = 'Generated JSDoc comments';
@@ -57,22 +57,9 @@ export class Configuration implements Omit<ConfigurationData, 'rootDirectory'> {
   public pullRequestReviewers: string[] = [];
   public excludedFiles: string[] = ['index.d.ts'];
 
-  constructor(rootDirectory?: string, dryRun = false, excludePatterns: string[] = []) {
+  constructor() {
     this.repoRoot = getRepoRoot();
-    this.dryRun = dryRun;
-
-    if (rootDirectory) {
-      this.useGit = false; // Disable Git features for local CLI usage
-      this._rootDirectory = {
-        absolute: path.resolve(rootDirectory),
-        relative: path.relative(this.repoRoot, rootDirectory),
-      };
-      // Set default and user-provided exclusions
-      this.excludedDirectories = ['node_modules', 'dist', 'build', ...excludePatterns];
-    } else {
-      this.useGit = true; // Enable Git features when running in CI/CD
-      this.loadConfiguration();
-    }
+    this.loadConfiguration();
   }
 
   get generateJsDoc(): boolean {
@@ -169,6 +156,19 @@ export class Configuration implements Omit<ConfigurationData, 'rootDirectory'> {
     });
 
     // Handle other inputs
+    if (process.env.GITHUB_REPOSITORY) {
+      const [owner, name] = process.env.GITHUB_REPOSITORY.split('/');
+      this.repository.owner = owner;
+      this.repository.name = name;
+      console.log(`Repository detected: ${owner}/${name}`);
+    } else {
+      console.warn(
+        'GITHUB_REPOSITORY env var not set. Using default repository.',
+      );
+      // Fallback to a default or handle as an error if needed
+      this.repository.owner = 'nydiokar';
+      this.repository.name = 'sova';
+    }
     if (process.env.INPUT_PULL_NUMBER) {
       console.log('Setting pull number from env:', process.env.INPUT_PULL_NUMBER);
       this.repository.pullNumber = Number.parseInt(process.env.INPUT_PULL_NUMBER);

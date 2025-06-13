@@ -2,20 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Configuration } from './Configuration.js';
 
-/**
- * DirectoryTraversal class for traversing through directories and files.
- * @class DirectoryTraversal
- */
-/**
- * DirectoryTraversal class for scanning directories and files based on configuration.
- *
- * @class
- */
+
 export class DirectoryTraversal {
-  /**
-   * Directories that should always be excluded from scanning,
-   * regardless of configuration
-   */
+
   private static readonly FORCED_EXCLUDED_DIRS = [
     'node_modules',
     '.git',

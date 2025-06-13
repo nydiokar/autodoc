@@ -60,7 +60,7 @@ export class DocumentationGenerator {
     public typeScriptParser: TypeScriptParser,
     public jsDocAnalyzer: JsDocAnalyzer,
     public jsDocGenerator: JsDocGenerator,
-    public gitManager: GitManager | undefined,
+    public gitManager: GitManager,
     public configuration: Configuration,
     public aiService: AIService
   ) {
@@ -81,7 +81,7 @@ export class DocumentationGenerator {
     let fileChanges: PrModeFileChange[] | FullModeFileChange[] = [];
     this.fileOffsets.clear();
 
-    if (pullNumber && this.configuration.useGit && this.gitManager) {
+    if (pullNumber && this.configuration.useGit) {
       const prFiles = await this.gitManager.getFilesInPullRequest(pullNumber);
       fileChanges = prFiles.filter((file) => {
         // Convert PR file path (which is repo-relative) to absolute path
@@ -150,7 +150,7 @@ export class DocumentationGenerator {
       // Always create branch if we have missing JSDoc, even if we're only generating README
       // This way we have a branch for either JSDoc commits or README commits
 
-      if (this.configuration.generateJsDoc && this.configuration.useGit && this.gitManager) {
+      if (this.configuration.generateJsDoc && this.configuration.useGit) {
         this.branchName = `docs-update-${pullNumber || 'full'}-${Date.now()}`;
         await this.gitManager.createBranch(this.branchName, this.configuration.branch);
       }
@@ -175,7 +175,7 @@ export class DocumentationGenerator {
       }
 
       // Only commit and create PR for JSDoc changes if generateJsDoc is true
-      if (this.hasChanges && this.branchName && this.configuration.useGit && this.gitManager) {
+      if (this.hasChanges && this.branchName && this.configuration.useGit) {
         for (const [filePath, content] of this.fileContents) {
           await this.gitManager.commitFile(
             this.branchName,
