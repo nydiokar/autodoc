@@ -37,10 +37,6 @@ export class JsDocGenerator {
    * @returns {Promise<string>} The generated comment.
    */
   public async generateComment(queueItem: ASTQueueItem): Promise<string> {
-    if (this.aiService.configuration.dryRun) {
-      console.log(`[DRY RUN] Would generate comment for: ${queueItem.code.split('\n')[0]}`);
-      return '/** [DRY RUN] JSDoc would be generated here. */';
-    }
     const prompt = this.buildPrompt(queueItem);
     const comment = await this.aiService.generateComment(prompt);
     return comment;
@@ -53,10 +49,7 @@ export class JsDocGenerator {
    * @returns {Promise<string>} The generated comment for the class.
    */
   public async generateClassComment(queueItem: ASTQueueItem): Promise<string> {
-    if (this.aiService.configuration.dryRun) {
-      console.log(`[DRY RUN] Would generate class comment for: ${queueItem.code.match(/class (\w+)/)?.[1]}`);
-      return '/** [DRY RUN] JSDoc would be generated here. */';
-    }
+
     const prompt = this.buildClassPrompt(queueItem);
     const comment = await this.aiService.generateComment(prompt);
     return comment;

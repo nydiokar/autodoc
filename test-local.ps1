@@ -27,7 +27,7 @@ $ErrorActionPreference = "Stop"
 
 # --- Test Configuration ---
 # IMPORTANT: Set this path to your local clone of the repository you want to test against.
-$TargetRepoPath = "C:\Users\Cicada38\Projects\analyzer"
+$TargetRepoPath = "C:\Users\Cicada38\Projects\autodoc"
 
 # --- Environment Simulation ---
 # These variables mimic the GitHub Actions environment.
