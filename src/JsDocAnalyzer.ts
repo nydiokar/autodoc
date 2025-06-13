@@ -3,22 +3,6 @@ import type { TypeScriptParser } from './TypeScriptParser.js';
 import type { ASTQueueItem, EnvUsage, TodoItem } from './types/index.js';
 
 /**
- * Defines a type representing various AST node types in a JavaScript abstract syntax tree.
- * @typedef {Object} AST_NODE_TYPES
- * @property {string} ClassDeclaration - Represents a class declaration node.
- * @property {string} FunctionDeclaration - Represents a function declaration node.
- * @property {string} TSTypeAliasDeclaration - Represents a TypeScript type alias declaration node.
- * @property {string} TSEnumDeclaration - Represents a TypeScript enum declaration node.
- * @property {string} MethodDefinition - Represents a method definition node.
- * @property {string} TSMethodSignature - Represents a TypeScript method signature node.
- * @property {string} TSInterfaceDeclaration - Represents a TypeScript interface declaration node.
- * @property {string} TSPropertySignature - Represents a TypeScript property signature node.
- * @property {string} ExportNamedDeclaration - Represents an export named declaration node.
- * @property {string} Identifier - Represents an identifier node.
- * @property {string} VariableDeclaration - Represents a variable declaration node.
- */
-
-/**
  * Defines a type representing different AST node types, with their corresponding string values.
  *
  * @typedef {Object} AST_NODE_TYPES
@@ -34,7 +18,10 @@ import type { ASTQueueItem, EnvUsage, TodoItem } from './types/index.js';
  * @property {string} Identifier - Represents an 'Identifier' node type.
  * @property {string} VariableDeclaration - Represents a 'VariableDeclaration' node type.
  */
-        ```
+
+/**
+ * Defines a type for the different AST node types.
+ */
 type AST_NODE_TYPES = {
   ClassDeclaration: 'ClassDeclaration';
   FunctionDeclaration: 'FunctionDeclaration';
