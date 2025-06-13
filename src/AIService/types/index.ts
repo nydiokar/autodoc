@@ -11,13 +11,14 @@ import type { ASTQueueItem } from '../../types';
  * @property {ASTQueueItem[]} functions - An array of ASTQueueItem objects representing functions in the file.
  */
 /**
- * Interface representing a group of documentation for a specific file.
- * @property {string} filePath - The path to the file.
- * @property {ASTQueueItem[]} classes - An array of ASTQueueItem objects representing classes in the file.
- * @property {ASTQueueItem[]} methods - An array of ASTQueueItem objects representing methods in the file.
- * @property {ASTQueueItem[]} interfaces - An array of ASTQueueItem objects representing interfaces in the file.
- * @property {ASTQueueItem[]} types - An array of ASTQueueItem objects representing types in the file.
- * @property {ASTQueueItem[]} functions - An array of ASTQueueItem objects representing functions in the file.
+ * Represents a group of documentation elements related to a specific file.
+ * @typedef {Object} FileDocsGroup
+ * @property {string} filePath - The file path of the document.
+ * @property {ASTQueueItem[]} classes - An array of ASTQueueItems representing classes in the file.
+ * @property {ASTQueueItem[]} methods - An array of ASTQueueItems representing methods in the file.
+ * @property {ASTQueueItem[]} interfaces - An array of ASTQueueItems representing interfaces in the file.
+ * @property {ASTQueueItem[]} types - An array of ASTQueueItems representing types in the file.
+ * @property {ASTQueueItem[]} functions - An array of ASTQueueItems representing functions in the file.
  */
 export interface FileDocsGroup {
   filePath: string;

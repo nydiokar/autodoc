@@ -6,16 +6,16 @@ import type { FileDocsGroup, OrganizedDocs } from '../types';
  */
 
 /**
-   * Organizes the given array of ASTQueueItems into different categories based on their nodeType.
-   * Categories include classes, methods, interfaces, types, functions, and variables.
-   * * @param docs - The array of ASTQueueItems to be organized
-   * @returns An object containing arrays of ASTQueueItems categorized by nodeType
-   */
+ * Organizes the given array of ASTQueueItems into different categories based on their nodeType.
+ * Categories include classes, methods, interfaces, types, functions, and variables.
+ * * @param docs - The array of ASTQueueItems to be organized
+ * @returns An object containing arrays of ASTQueueItems categorized by nodeType
+ */
 /**
-   * Groups the given organized documentation by file path.
-   * * @param { OrganizedDocs } docs - The organized documentation to group.
-   * @returns {FileDocsGroup[]} An array of grouped documentation based on file paths.
-   */
+ * Groups the given organized documentation by file path.
+ * * @param { OrganizedDocs } docs - The organized documentation to group.
+ * @returns {FileDocsGroup[]} An array of grouped documentation based on file paths.
+ */
 export class DocumentOrganizer {
   /**
    * Organizes the given array of ASTQueueItems into different categories based on their nodeType.

@@ -16,15 +16,14 @@ dotenv.config();
  * @property {string[]} [reviewers] - Optional array of GitHub usernames for reviewers of the pull request.
  */
 /**
- * Interface for options when creating a new pull request.
+ * Interface for specifying options when creating a pull request.
  * @property {string} title - The title of the pull request.
- * @property {string} body - The body/content of the pull request.
- * @property {string} head - The branch where the changes are coming from.
- * @property {string} base - The branch where the changes should be merged into.
- * @property {string[]} [labels] - An optional array of labels to be added to the pull request.
- * @property {string[]} [reviewers] - An optional array of GitHub usernames for reviewers of the pull request.
+ * @property {string} body - The body of the pull request.
+ * @property {string} head - The branch where changes are coming from.
+ * @property {string} base - The branch the changes should be pulled into.
+ * @property {string[]} [labels] - Optional labels to apply to the pull request.
+ * @property {string[]} [reviewers] - Optional list of reviewers for the pull request.
  */
-         
 interface CreatePullRequestOptions {
   title: string;
   body: string;
