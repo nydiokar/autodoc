@@ -15,21 +15,21 @@ const getRepoRoot = () => {
 };
 
 /**
- * Interface representing the configuration data for a project.
- * @typedef {Object} ConfigurationData
- * @property {Object} rootDirectory - Information about the root directory
- * @property {string} rootDirectory.absolute - Full path from filesystem root
- * @property {string} rootDirectory.relative - Path relative to repository root
- * @property {string[]} excludedDirectories - List of directories to exclude
+ * Interface representing configuration data for a project.
+ * @typedef {object} ConfigurationData
+ * @property {object} rootDirectory - Information about the root directory
+ * @property {string} rootDirectory.absolute - Full path from the filesystem root
+ * @property {string} rootDirectory.relative - Path relative to the repository root
+ * @property {string[]} excludedDirectories - List of directories to exclude from processing
  * @property {Repository} repository - Information about the repository
- * @property {string} commitMessage - The commit message to use
- * @property {string} pullRequestTitle - The title for the pull request
- * @property {string} pullRequestDescription - The description for the pull request
- * @property {string[]} pullRequestLabels - List of labels for the pull request
- * @property {string[]} pullRequestReviewers - List of reviewers for the pull request
- * @property {string[]} excludedFiles - List of files to exclude
- * @property {boolean} generateJsDoc - Whether to generate JSDoc documentation
- * @property {boolean} generateReadme - Whether to generate a README file
+ * @property {string} commitMessage - Default commit message to use
+ * @property {string} pullRequestTitle - Default title for pull requests
+ * @property {string} pullRequestDescription - Default description for pull requests
+ * @property {string[]} pullRequestLabels - Default labels for pull requests
+ * @property {string[]} pullRequestReviewers - Default list of reviewers for pull requests
+ * @property {string[]} excludedFiles - List of files to exclude from processing
+ * @property {boolean} generateJsDoc - Flag indicating whether to generate JSDoc documentation
+ * @property {boolean} generateReadme - Flag indicating whether to generate a README file
  */
 interface ConfigurationData {
   rootDirectory: {
@@ -53,7 +53,8 @@ interface ConfigurationData {
  * Handles both absolute and relative paths for different operations.
  */
 /**
- * Represents a configuration object for automated JSDoc generation.
+ * Represents a configuration object used for JSDoc automation.
+ * @class Configuration
  */
 export class Configuration implements Omit<ConfigurationData, 'rootDirectory'> {
   private _rootDirectory!: ConfigurationData['rootDirectory'];
