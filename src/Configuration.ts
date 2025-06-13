@@ -31,6 +31,23 @@ const getRepoRoot = () => {
  * @property {boolean} generateJsDoc - Flag indicating whether to generate JSDoc documentation
  * @property {boolean} generateReadme - Flag indicating whether to generate a README file
  */
+/**
+ * Interface for configuration data used in a project.
+ * @typedef {Object} ConfigurationData
+ * @property {Object} rootDirectory - Information about the root directory
+ * @property {string} rootDirectory.absolute - Full path from filesystem root
+ * @property {string} rootDirectory.relative - Path relative to repository root
+ * @property {string[]} excludedDirectories - Directories to be excluded
+ * @property {Repository} repository - Information about the repository
+ * @property {string} commitMessage - Message for the commit
+ * @property {string} pullRequestTitle - Title for the pull request
+ * @property {string} pullRequestDescription - Description for the pull request
+ * @property {string[]} pullRequestLabels - Labels for the pull request
+ * @property {string[]} pullRequestReviewers - Reviewers for the pull request
+ * @property {string[]} excludedFiles - Files to be excluded
+ * @property {boolean} generateJsDoc - Flag to generate JSDoc
+ * @property {boolean} generateReadme - Flag to generate readme
+ */
 interface ConfigurationData {
   rootDirectory: {
     absolute: string; // Full path from filesystem root
