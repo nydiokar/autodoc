@@ -7,6 +7,11 @@ import type { Configuration } from './Configuration.js';
  * Class for traversing directories and processing files based on a configuration object.
  * @class
  */
+/**
+ * Constructor for a class.
+ * @param {Configuration} config - The configuration object.
+ * @param {string[]} [prFiles=[]] - Array of PR files.
+ */
 export class DirectoryTraversal {
 
   private static readonly FORCED_EXCLUDED_DIRS = [
