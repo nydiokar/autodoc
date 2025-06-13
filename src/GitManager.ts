@@ -15,6 +15,16 @@ dotenv.config();
  * @property {string[]} [labels] - Optional array of labels to assign to the pull request.
  * @property {string[]} [reviewers] - Optional array of GitHub usernames for reviewers of the pull request.
  */
+/**
+ * Interface for options when creating a new pull request.
+ * @property {string} title - The title of the pull request.
+ * @property {string} body - The body/content of the pull request.
+ * @property {string} head - The branch where the changes are coming from.
+ * @property {string} base - The branch where the changes should be merged into.
+ * @property {string[]} [labels] - An optional array of labels to be added to the pull request.
+ * @property {string[]} [reviewers] - An optional array of GitHub usernames for reviewers of the pull request.
+ */
+         
 interface CreatePullRequestOptions {
   title: string;
   body: string;
@@ -140,18 +150,20 @@ export class GitManager {
     content: string,
     message: string
   ): Promise<void> {
+    const posixFilePath = filePath.replace(/\\/g, '/');
+
     try {
       const { data } = await this.octokit.repos.getContent({
         owner: this.repository.owner,
         repo: this.repository.name,
-        path: filePath,
+        path: posixFilePath,
         ref: branchName,
       });
 
       await this.octokit.repos.createOrUpdateFileContents({
         owner: this.repository.owner,
         repo: this.repository.name,
-        path: filePath,
+        path: posixFilePath,
         message: message,
         content: Buffer.from(content).toString('base64'),
         sha: (data as any).sha,
@@ -164,7 +176,7 @@ export class GitManager {
         await this.octokit.repos.createOrUpdateFileContents({
           owner: this.repository.owner,
           repo: this.repository.name,
-          path: filePath,
+          path: posixFilePath,
           message: message,
           content: Buffer.from(content).toString('base64'),
           branch: branchName,
@@ -182,37 +194,52 @@ export class GitManager {
    */
   public async createPullRequest(options: CreatePullRequestOptions): Promise<void> {
     try {
-      // Create the pull request
+      const { title, body, head, base, labels, reviewers } = options;
+
+      const existingPr = await this.octokit.pulls.list({
+        owner: this.repository.owner,
+        repo: this.repository.name,
+        head,
+      });
+
+      if (existingPr.data.length > 0) {
+        console.log(`Pull request already exists for branch ${head}: #${existingPr.data[0].number}`);
+        // Optionally update the existing PR here if needed
+        return;
+      }
+
       const { data: pr } = await this.octokit.pulls.create({
         owner: this.repository.owner,
         repo: this.repository.name,
-        title: options.title,
-        body: options.body,
-        head: options.head,
-        base: options.base,
+        title,
+        body,
+        head,
+        base,
+        labels,
       });
 
-      // Add labels if provided
-      if (options.labels && options.labels.length > 0) {
-        await this.octokit.issues.addLabels({
-          owner: this.repository.owner,
-          repo: this.repository.name,
-          issue_number: pr.number,
-          labels: options.labels,
-        });
-      }
+      console.log(`Successfully created pull request #${pr.number}`);
 
-      // Add reviewers if provided
-      if (options.reviewers && options.reviewers.length > 0) {
-        await this.octokit.pulls.requestReviewers({
-          owner: this.repository.owner,
-          repo: this.repository.name,
-          pull_number: pr.number,
-          reviewers: options.reviewers,
-        });
-      }
+      if (reviewers && reviewers.length > 0) {
+        const { data: currentUser } = await this.octokit.users.getAuthenticated();
+        const prAuthor = currentUser.login;
 
-      console.log(`Created PR #${pr.number}: ${pr.html_url}`);
+        const reviewersToRequest = reviewers.filter(
+          (reviewer) => reviewer.trim() !== prAuthor,
+        );
+
+        if (reviewersToRequest.length > 0) {
+          await this.octokit.pulls.requestReviewers({
+            owner: this.repository.owner,
+            repo: this.repository.name,
+            pull_number: pr.number,
+            reviewers: reviewersToRequest,
+          });
+          console.log(`Successfully requested review from: ${reviewersToRequest.join(', ')}`);
+        } else {
+          console.log('No reviewers to request (author was filtered out).');
+        }
+      }
     } catch (error) {
       console.error('Error creating pull request:', error);
       throw error;
