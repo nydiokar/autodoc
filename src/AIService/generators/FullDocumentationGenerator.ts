@@ -22,10 +22,10 @@ import { DocumentOrganizer } from '../utils/DocumentOrganizer.js';
  * @property {string} answer - The answer to the question.
  */
 /**
- * Interface representing a Frequently Asked Questions (FAQ) item.
- * @typedef {Object} FAQ
- * @property {string} question - The question part of the FAQ item.
- * @property {string} answer - The answer part of the FAQ item.
+ * Interface representing a FAQ item.
+ * @typedef {object} FAQ
+ * @property {string} question - The question being asked.
+ * @property {string} answer - The answer to the question.
  */
 interface FAQ {
   question: string;
