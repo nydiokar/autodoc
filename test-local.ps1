@@ -5,8 +5,8 @@
 #
 # 1. CLONE THE TARGET REPOSITORY:
 #    You need a local copy of the repository you want to run this tool against.
-#    For example: git clone https://github.com/nydiokar/analyzer.git ../analyzer
-#    (This clones it into a folder named 'analyzer' next to your 'autodoc' folder).
+#    For example: git clone https://github.com/nydiokar/autodoc.git ../autodoc
+#    (This clones it into a folder named 'autodoc' next to your 'autodoc' folder).
 #
 # 2. CONFIGURE THE TEST PATH:
 #    Update the `$TargetRepoPath` variable below to point to your local clone.
@@ -27,7 +27,7 @@ $ErrorActionPreference = "Stop"
 
 # --- Test Configuration ---
 # IMPORTANT: Set this path to your local clone of the repository you want to test against.
-$TargetRepoPath = "C:\Users\Cicada38\Projects\autodoc"
+$TargetRepoPath = "C:\Users\your\repo\path"
 
 # --- Environment Simulation ---
 # These variables mimic the GitHub Actions environment.

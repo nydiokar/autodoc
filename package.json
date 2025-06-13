@@ -1,7 +1,7 @@
 {
   "name": "@nydiokar/autodoc",
-  "version": "0.1.6",
-  "description": "A tool to automatically generate documentation for TypeScript projects.",
+  "version": "0.1.7",
+  "description": "A workflow tool to automatically generate documentation for TypeScript projects.",
   "type": "module",
   "bin": {
     "autodoc": "dist/index.js"
