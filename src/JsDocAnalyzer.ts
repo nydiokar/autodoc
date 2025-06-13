@@ -19,8 +19,22 @@ import type { ASTQueueItem, EnvUsage, TodoItem } from './types/index.js';
  */
 
 /**
- * Definition of different AST node types along with their string values.
+ * Defines a type representing different AST node types, with their corresponding string values.
+ *
+ * @typedef {Object} AST_NODE_TYPES
+ * @property {string} ClassDeclaration - Represents a 'ClassDeclaration' node type.
+ * @property {string} FunctionDeclaration - Represents a 'FunctionDeclaration' node type.
+ * @property {string} TSTypeAliasDeclaration - Represents a 'TSTypeAliasDeclaration' node type.
+ * @property {string} TSEnumDeclaration - Represents a 'TSEnumDeclaration' node type.
+ * @property {string} MethodDefinition - Represents a 'MethodDefinition' node type.
+ * @property {string} TSMethodSignature - Represents a 'TSMethodSignature' node type.
+ * @property {string} TSInterfaceDeclaration - Represents a 'TSInterfaceDeclaration' node type.
+ * @property {string} TSPropertySignature - Represents a 'TSPropertySignature' node type.
+ * @property {string} ExportNamedDeclaration - Represents an 'ExportNamedDeclaration' node type.
+ * @property {string} Identifier - Represents an 'Identifier' node type.
+ * @property {string} VariableDeclaration - Represents a 'VariableDeclaration' node type.
  */
+        ```
 type AST_NODE_TYPES = {
   ClassDeclaration: 'ClassDeclaration';
   FunctionDeclaration: 'FunctionDeclaration';
@@ -752,7 +766,7 @@ export class JsDocAnalyzer {
       // Safely traverse child nodes
       if ('body' in node) {
         const body = Array.isArray(node.body) ? node.body : [node.body];
-        body.forEach((child: TSESTree.Node) => {
+        body.forEach((child) => {
           if (child && typeof child === 'object') {
             traverse(child as TSESTree.Node);
           }
