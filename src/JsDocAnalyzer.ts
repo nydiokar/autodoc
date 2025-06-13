@@ -18,6 +18,9 @@ import type { ASTQueueItem, EnvUsage, TodoItem } from './types/index.js';
  * @property {string} VariableDeclaration - Represents a variable declaration node.
  */
 
+/**
+ * Definition of different AST node types along with their string values.
+ */
 type AST_NODE_TYPES = {
   ClassDeclaration: 'ClassDeclaration';
   FunctionDeclaration: 'FunctionDeclaration';

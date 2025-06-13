@@ -3,6 +3,11 @@ import type { FileDocsGroup } from '../types';
 /**
  * Class representing a CodeFormatter that includes methods for formatting code components and JSDoc comments.
  */
+/**
+ * Ensures that the filePath has a .ts extension
+ * @param {string} filePath - The file path to check/modify
+ * @returns {string} The filePath with a .ts extension
+ */
 export class CodeFormatter {
   /**
    * Ensures that the filePath has a .ts extension

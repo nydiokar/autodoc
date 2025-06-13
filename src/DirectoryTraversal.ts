@@ -3,6 +3,10 @@ import path from 'node:path';
 import type { Configuration } from './Configuration.js';
 
 
+/**
+ * Class for traversing directories and processing files.
+ * * @class DirectoryTraversal
+ */
 export class DirectoryTraversal {
 
   private static readonly FORCED_EXCLUDED_DIRS = [
@@ -29,6 +33,12 @@ export class DirectoryTraversal {
    * @param {Configuration} config - Configuration object containing paths and exclusions
    * @param {string[]} [prFiles=[]] - PR files to process
    */
+/**
+ * Constructor for the class.
+ * 
+ * @param {Configuration} config - The configuration object.
+ * @param {string[]} prFiles - An array of strings representing the PR files. Default value is an empty array.
+ */
   constructor(
     private config: Configuration,
     public prFiles: string[] = []

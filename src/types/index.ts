@@ -14,6 +14,19 @@ import type { TSESTree } from '@typescript-eslint/types';
  * @property {string} [methodName] - The method name of the item (if applicable).
  * @property {string} [jsDoc] - The JSDoc comment associated with the item.
  */
+/**
+ * Represents an item in the Abstract Syntax Tree (AST) queue.
+ * @typedef {Object} ASTQueueItem
+ * @property {string} name - The name of the AST item.
+ * @property {string} filePath - The file path of the AST item.
+ * @property {number} startLine - The starting line number of the AST item.
+ * @property {number} endLine - The ending line number of the AST item.
+ * @property {string} nodeType - The type of the AST node.
+ * @property {string} code - The code snippet of the AST item.
+ * @property {string} [className] - The class name of the AST item (if applicable).
+ * @property {string} [methodName] - The method name of the AST item (if applicable).
+ * @property {string} [jsDoc] - The JSDoc comments associated with the AST item.
+ */
 export interface ASTQueueItem {
   name: string;
   filePath: string;

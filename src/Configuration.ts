@@ -14,6 +14,23 @@ const getRepoRoot = () => {
   return process.cwd();
 };
 
+/**
+ * Interface representing the configuration data for a project.
+ * @typedef {Object} ConfigurationData
+ * @property {Object} rootDirectory - Information about the root directory
+ * @property {string} rootDirectory.absolute - Full path from filesystem root
+ * @property {string} rootDirectory.relative - Path relative to repository root
+ * @property {string[]} excludedDirectories - List of directories to exclude
+ * @property {Repository} repository - Information about the repository
+ * @property {string} commitMessage - The commit message to use
+ * @property {string} pullRequestTitle - The title for the pull request
+ * @property {string} pullRequestDescription - The description for the pull request
+ * @property {string[]} pullRequestLabels - List of labels for the pull request
+ * @property {string[]} pullRequestReviewers - List of reviewers for the pull request
+ * @property {string[]} excludedFiles - List of files to exclude
+ * @property {boolean} generateJsDoc - Whether to generate JSDoc documentation
+ * @property {boolean} generateReadme - Whether to generate a README file
+ */
 interface ConfigurationData {
   rootDirectory: {
     absolute: string; // Full path from filesystem root
@@ -34,6 +51,9 @@ interface ConfigurationData {
 /**
  * Represents a configuration object that holds various settings for a project.
  * Handles both absolute and relative paths for different operations.
+ */
+/**
+ * Represents a configuration object for automated JSDoc generation.
  */
 export class Configuration implements Omit<ConfigurationData, 'rootDirectory'> {
   private _rootDirectory!: ConfigurationData['rootDirectory'];

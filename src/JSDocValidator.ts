@@ -4,6 +4,9 @@ import type { AIService } from './AIService/AIService.js';
 /**
  * Class for validating and fixing JSDoc comments in TypeScript code.
  */
+/**
+ * Class for validating and fixing JSDoc comments in TypeScript code.
+ */
 export class JSDocValidator {
   private parserOptions: ParserOptions = {
     sourceType: 'module',
